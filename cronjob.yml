@@ -16,8 +16,19 @@ spec:
           containers:
           - name: busyboxcronjob
             image: busyboxplus:curl
-            command:
-            - /bin/sh
-            - -c
-            - curl http://localhost:8080/api/health
+            resources:
+              limits:
+                cpu: 100m
+                memory: 200Mi
+              requests:
+                cpu: 100m
+                memory: 200Mi
+            livenessProbe:
+              exec:
+                command:
+                 - /bin/sh
+                 - -c
+                 - curl http://localhost:8080/api/health
+              initialDelaySeconds: 5
+              periodSeconds: 5
           restartPolicy: OnFailure

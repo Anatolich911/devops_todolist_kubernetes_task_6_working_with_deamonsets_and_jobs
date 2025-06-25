@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: busybox
-        image: busyboxplus:curl
+        image: ikulyk404/busyboxplus:curl
         command: ["sh", "-c", "curl http://localhost:8080/api/health"]
         resources:
           limits:
